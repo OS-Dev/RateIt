@@ -30,7 +30,6 @@
         <activity
             android:name=".ProductActivity"
             android:label="@string/title_activity_product" />
-        <activity android:name=".RatingsActivity"></activity>
     </application>
 
 </manifest>

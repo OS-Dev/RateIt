@@ -11,6 +11,8 @@ public class ProductActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

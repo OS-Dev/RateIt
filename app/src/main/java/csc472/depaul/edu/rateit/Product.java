@@ -38,6 +38,14 @@ public class Product {
         return avgRating;
     }
 
+    public void addRating(int rating){
+        this.totalRating+=rating;
+        this.incTimesRated();
+    }
+    public void updateRating(Product product, int oldRating, int rating){
+        product.totalRating -= oldRating;
+        product.totalRating += rating;
+    }
     @Override
     public int hashCode() {
         int hCode = 17;

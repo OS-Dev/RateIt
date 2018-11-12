@@ -10,7 +10,7 @@ public class Profile {
     private String username;
 
     Profile(String name, String image) {
-        this.favorites = new ArrayList<>;
+        this.favorites = new ArrayList<>();
         this.rated = new ArrayList<>();
         this.imgSrc = image;
         this.username = name;
@@ -38,7 +38,7 @@ public class Profile {
         if (rated.contains(product)) {
             //method to update rating as implemented in Product class
             //TODO: Update method name as seen in Product
-            product.updateRating(rating);
+            product.updateRating(oldRating, rating);
         } else {
             //method to add rating as implemented in Product class
             //TODO: Update method name as seen in Product

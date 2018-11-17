@@ -1,6 +1,9 @@
 package csc472.depaul.edu.rateit;
 
-public class Product {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Product implements Parcelable {
     /*
      *  Product object class for storing and retrieving product information
      *
@@ -12,6 +15,41 @@ public class Product {
     private int totalRating;
     private int avgRating;
 
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(productName);
+        out.writeString(imgSrc);
+        out.writeString(productDescription);
+        out.writeInt(timesRated);
+        out.writeInt(totalRating);
+        //Don't think avgRating is needed here
+        out.writeInt(avgRating);
+    }
+
+    public static final Parcelable.Creator<Product> CREATOR
+            = new Parcelable.Creator<Product>() {
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
+
+    private Product(Parcel in) {
+        productName = in.readString();
+        imgSrc = in.readString();
+        productDescription = in.readString();
+        timesRated = in.readInt();
+        totalRating = in.readInt();
+        //Don't think avgRating is needed here
+        avgRating = in.readInt();
+    }
+
     Product(String productName, String imgSrc, String productDescription,
                 int timesRated, int totalRating){
         this.productName = productName;
@@ -19,7 +57,7 @@ public class Product {
         this.productDescription = productDescription;
         this.timesRated = timesRated;
         this.totalRating = totalRating;
-        this.avgRating = totalRating/timesRated;
+        this.avgRating = this.totalRating/this.timesRated;
     }
 
     public void incTimesRated(){

@@ -50,7 +50,7 @@ public class Product implements Parcelable {
         avgRating = in.readInt();
     }
 
-    Product(String productName, String imgSrc, String productDescription,
+    public Product(String productName, String imgSrc, String productDescription,
                 int timesRated, int totalRating){
         this.productName = productName;
         this.imgSrc = imgSrc;
@@ -80,9 +80,9 @@ public class Product implements Parcelable {
         this.totalRating+=rating;
         this.incTimesRated();
     }
-    public void updateRating(Product product, int oldRating, int rating){
-        product.totalRating -= oldRating;
-        product.totalRating += rating;
+    public void updateRating(int oldRating, int rating){
+        this.totalRating -= oldRating;
+        this.totalRating += rating;
     }
     @Override
     public int hashCode() {

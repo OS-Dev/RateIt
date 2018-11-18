@@ -8,6 +8,7 @@ public class Profile {
     private ArrayList<Product> rated;
     private String imgSrc;
     private String username;
+    private int oldRating;
 
     Profile(String name, String image) {
         this.favorites = new ArrayList<>();
@@ -15,6 +16,7 @@ public class Profile {
         this.imgSrc = image;
         this.username = name;
         this.imgSrc = null;
+        this.oldRating = 0;
     }
 
     public void updateProfileImg(String src) {

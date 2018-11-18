@@ -112,4 +112,12 @@ public class Product implements Parcelable {
         buffer.append(")");
         return buffer.toString();
     }
+
+    public Integer getTimesRated() {
+        return timesRated;
+    }
+
+    public Integer getTotalRating() {
+        return totalRating;
+    }
 }

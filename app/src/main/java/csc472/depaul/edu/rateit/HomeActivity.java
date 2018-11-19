@@ -1,21 +1,22 @@
 package csc472.depaul.edu.rateit;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.view.ViewGroup;
 import android.widget.Toast;
-
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-    private ArrayList<Product> productArrayList;
+    private ArrayList<Product> productArrayList = new ArrayList<>();
     private String NEW_PRODUCT_INTENT = "NEW_PRODUCT_INTENT";
 
     @Override
@@ -23,14 +24,69 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //TODO: open file from SD card and add product elements to productArrayList
-        //TODO: read each element and use it to create a product
-        mTextMessage = findViewById(R.id.message);
+        try
+        {
+            requestReadExternalStoragePermission();
+
+            File sdCard = Environment.getExternalStorageDirectory();
+            File dir = new File(sdCard.getAbsolutePath() + "/products");
+
+            if( !dir.exists() )
+                dir.mkdir();
+
+            File file = new File(dir, "products.txt");
+            Scanner scan = new Scanner(file);
+
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                String[] sArr = s.split("\\|");
+                Product product = new Product(sArr[0], Integer.parseInt(sArr[1]), sArr[2], Integer.parseInt(sArr[3]), Integer.parseInt(sArr[4]));
+                productArrayList.add(product);
+            }
+
+        } catch (Exception e)
+        {
+            Toast toast = Toast.makeText(getUserActivity(), e.getMessage(), Toast.LENGTH_LONG);
+            toast.show();
+        }
+
+        populateScrollView();
     }
 
-    private final HomeActivity getNewUserActivity()
+    private final HomeActivity getUserActivity()
     {
         return this;
+    }
+
+    private void requestReadExternalStoragePermission()
+    {
+        int readPermission = ActivityCompat.checkSelfPermission(getUserActivity(), Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (readPermission != PackageManager.PERMISSION_GRANTED)
+        {
+            int REQUEST_EXTERNAL_STORAGE = 1;
+
+            String[] PERMISSIONS_STORAGE = {
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+            };
+
+            ActivityCompat.requestPermissions(
+                    getUserActivity(),
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
+
+    private void populateScrollView() {
+        ViewGroup parent = findViewById(R.id.productHomeLinear);
+        ProductLinearLayout pll;
+
+        for (Product product : productArrayList) {
+            pll = new ProductLinearLayout(this, product);
+            pll.setOnClickListener(onProductClick);
+            parent.addView(pll);
+        }
     }
 
     //TODO: set up recycler view with buttons which pass intent to ProductActivity with a bundle containing the relevant Product
@@ -39,12 +95,13 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            Product investment = new Product("productName", "imgSrc", "productDescription", 1, 5);
+            ProductLinearLayout pll = (ProductLinearLayout) v;
+            Product product = pll.getProduct();
 
             Bundle extras = new Bundle();
-            extras.putParcelable(NEW_PRODUCT_INTENT, investment);
+            extras.putParcelable(NEW_PRODUCT_INTENT, product);
 
-            Intent productIntent = new Intent(getNewUserActivity(), ProductActivity.class);
+            Intent productIntent = new Intent(getUserActivity(), ProductActivity.class);
             productIntent.putExtras(extras);
             startActivity(productIntent);
         }

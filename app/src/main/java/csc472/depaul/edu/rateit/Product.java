@@ -8,12 +8,12 @@ public class Product implements Parcelable {
      *  Product object class for storing and retrieving product information
      *
      */
+    //Create variables
     private final String productName;
     private final String imgSrc;
     private final String productDescription;
     private int timesRated;
     private int totalRating;
-    private int avgRating;
 
     public int describeContents() {
         return 0;
@@ -25,8 +25,6 @@ public class Product implements Parcelable {
         out.writeString(productDescription);
         out.writeInt(timesRated);
         out.writeInt(totalRating);
-        //Don't think avgRating is needed here
-        out.writeInt(avgRating);
     }
 
     public static final Parcelable.Creator<Product> CREATOR
@@ -46,10 +44,8 @@ public class Product implements Parcelable {
         productDescription = in.readString();
         timesRated = in.readInt();
         totalRating = in.readInt();
-        //Don't think avgRating is needed here
-        avgRating = in.readInt();
     }
-
+    //Product Class Constructor
     public Product(String productName, String imgSrc, String productDescription,
                 int timesRated, int totalRating){
         this.productName = productName;
@@ -57,7 +53,6 @@ public class Product implements Parcelable {
         this.productDescription = productDescription;
         this.timesRated = timesRated;
         this.totalRating = totalRating;
-        this.avgRating = this.totalRating/this.timesRated;
     }
 
     public void incTimesRated(){
@@ -73,7 +68,7 @@ public class Product implements Parcelable {
         return  productDescription;
     }
     public  int getAvgRating(){
-        return avgRating;
+        return this.totalRating/this.timesRated;
     }
 
     public void addRating(int rating){
@@ -84,25 +79,7 @@ public class Product implements Parcelable {
         this.totalRating -= oldRating;
         this.totalRating += rating;
     }
-    @Override
-    public int hashCode() {
-        int hCode = 17;
-        hCode = 37 * hCode + productName.hashCode();
-        hCode = 37 * hCode + imgSrc.hashCode();
-        hCode = 37 * hCode + productDescription.hashCode();
-        return hCode;
-    }
-    public int compareTo(Product that){
-        if (this.getProductName() != that.getProductName()){
-            return this.productName.hashCode() - that.productName.hashCode();
-        }
-        else if (this.getProductName() == that.getProductName()){
-            return  this.imgSrc.compareTo(that.imgSrc);
-        }
-        else{
-            return  this.productDescription.compareTo(that.productDescription);
-        }
-    }
+
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
@@ -111,13 +88,5 @@ public class Product implements Parcelable {
         buffer.append(this.getAvgRating());
         buffer.append(")");
         return buffer.toString();
-    }
-
-    public Integer getTimesRated() {
-        return timesRated;
-    }
-
-    public Integer getTotalRating() {
-        return totalRating;
     }
 }

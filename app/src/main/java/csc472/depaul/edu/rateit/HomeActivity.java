@@ -25,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //TODO: open file from SD card and add product elements to productArrayList
         //TODO: read each element and use it to create a product
-        mTextMessage = (TextView) findViewById(R.id.message);
+        mTextMessage = findViewById(R.id.message);
     }
 
     private final HomeActivity getNewUserActivity()

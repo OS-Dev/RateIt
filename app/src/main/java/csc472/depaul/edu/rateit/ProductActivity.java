@@ -20,64 +20,34 @@ import java.util.ArrayList;
 
 public class ProductActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
     private Product product;
-
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        ListView content = (ListView) findViewById(R.id.product_layout);
-
-        if (savedInstanceState==null) {
+            //Get Intent from Home of Profile
             Intent intent = getIntent();
-            Product product = (Product) intent.getParcelableExtra("product");
+            //Create product from parcel
+            product = intent.getParcelableExtra("product");
+            //Gather data for display
             String productName = product.getProductName();
             String imgSrc = product.getImgSrc();
             String productDescription = product.getProductDescription();
-            Integer timesRated = product.getTimesRated();
-            Integer totalRating = product.getTotalRating();
-            //Don't think this is needed
             Integer avgRating = product.getAvgRating();
-            final TextView productTextView = (TextView) findViewById(R.id.product_name);
+            //Display product name
+            final TextView productTextView = findViewById(R.id.product_name);
             productTextView.setText(productName);
-            final ImageView imgView = (ImageView) findViewById(R.id.product_img);
+            //Display product image
+            final ImageView imgView = findViewById(R.id.product_img);
             imgView.setImageURI(Uri.parse(imgSrc));
-            final TextView productDescView = (TextView) findViewById(R.id.product_description);
+            //Display product description
+            final TextView productDescView = findViewById(R.id.product_description);
             productDescView.setText(productDescription);
-            final RatingBar ratingView = (RatingBar) findViewById(R.id.ratingBar);
+            //Display rating
+            final RatingBar ratingView = findViewById(R.id.ratingBar);
             ratingView.setNumStars(avgRating);
-        }
-        else{
-            product = savedInstanceState.getParcelable("product");
-        }
-        content.setAdapter((ListAdapter) product);
 
     }
 }

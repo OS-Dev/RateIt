@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -23,17 +24,25 @@ public class ProductActivity extends AppCompatActivity {
     private Product product;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
+        //Profile Button
+        Button profileButton = findViewById(R.id.profile_button);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent());
+            }
+        });
             //Get Intent from Home of Profile
             Intent intent = getIntent();
             //Create product from parcel
             product = intent.getParcelableExtra("product");
             //Gather data for display
             String productName = product.getProductName();
-            String imgSrc = product.getImgSrc();
+            int imgSrc = product.getImgSrc();
             String productDescription = product.getProductDescription();
             Integer avgRating = product.getAvgRating();
             //Display product name
@@ -41,7 +50,7 @@ public class ProductActivity extends AppCompatActivity {
             productTextView.setText(productName);
             //Display product image
             final ImageView imgView = findViewById(R.id.product_img);
-            imgView.setImageURI(Uri.parse(imgSrc));
+            imgView.setImageDrawable(getDrawable(imgSrc));
             //Display product description
             final TextView productDescView = findViewById(R.id.product_description);
             productDescView.setText(productDescription);

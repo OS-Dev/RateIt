@@ -28,10 +28,12 @@
         <activity
             android:name=".ProductActivity"
             android:label="@string/app_name" />
+
         <activity
             android:name=".ProfileActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

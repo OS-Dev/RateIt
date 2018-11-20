@@ -24,8 +24,8 @@ import java.io.File;
 
 public class ProductActivity extends AppCompatActivity{
 
-    //private Product product = new Product("Malort", -800003,"Best drink there is!", 1, 5);
     private Product product;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +39,16 @@ public class ProductActivity extends AppCompatActivity{
                 startActivity(new Intent(getUserActivity(), ProfileActivity.class));
             }
         });
-            //Get Intent from Home of Profile
+        //Add Favorite Button
+        Button favButton = findViewById(R.id.favorite_button);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//
+               //profile.addFavorite(product);
+            }
+        });
+
+            //Get Intent from Home or Profile
             Intent intent = getIntent();
 
             //Create product from parcel
@@ -66,9 +75,16 @@ public class ProductActivity extends AppCompatActivity{
             productDescView.setText(product.getProductDescription());
 
             //Display rating
-            RatingBar ratingView = findViewById(R.id.ratingBar);
+            final RatingBar ratingView = findViewById(R.id.ratingBar);
             ratingView.setNumStars(5);
             ratingView.setRating(product.getAvgRating());
+            ratingView.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   //Change File, add Rating to rated,
+                   //profile.rate(product, rating);
+                    }
+            });
             } catch (Exception e) {
                 Toast toast = Toast.makeText(getUserActivity(), e.getMessage(), Toast.LENGTH_LONG);
                 toast.show();

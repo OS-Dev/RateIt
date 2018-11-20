@@ -49,12 +49,11 @@ public class HomeActivity extends AppCompatActivity {
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 String[] sArr = s.split("\\|");
-                Product product = new Product(sArr[0], Integer.parseInt(sArr[1]), sArr[2], Integer.parseInt(sArr[3]), Integer.parseInt(sArr[4]));
+                Product product = new Product(sArr[0], sArr[1], sArr[2], Integer.parseInt(sArr[3]), Integer.parseInt(sArr[4]));
                 productArrayList.add(product);
             }
 
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Toast toast = Toast.makeText(getUserActivity(), e.getMessage(), Toast.LENGTH_LONG);
             toast.show();
         }

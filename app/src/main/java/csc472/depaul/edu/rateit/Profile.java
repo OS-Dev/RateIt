@@ -1,11 +1,13 @@
 package csc472.depaul.edu.rateit;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
 
 public class Profile {
 
     private ArrayList<Product> favorites;
-    private ArrayList<Product> rated;
+    private ArrayList<Pair<Product,Integer>> rated;
     private String imgSrc;
     private String username;
     private int oldRating;
@@ -45,7 +47,10 @@ public class Profile {
             //method to add rating as implemented in Product class
             //TODO: Update method name as seen in Product
             product.addRating(rating);
-            rated.add(product);
+            oldRating = rating;
+            Pair p = new Pair(product,rating);
+            rated.add(p);
+
         }
     }
 

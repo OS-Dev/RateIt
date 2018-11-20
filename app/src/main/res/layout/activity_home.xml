@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     tools:context=".HomeActivity">
 
     <Button
@@ -47,7 +48,7 @@
                     android:textSize="30sp"
                     android:layout_marginLeft="5sp"
                     android:layout_marginRight="10sp"
-                    android:text="Check out these top rated items!"/>
+                    android:text="Top Rated Products!"/>
 
             </LinearLayout>
 

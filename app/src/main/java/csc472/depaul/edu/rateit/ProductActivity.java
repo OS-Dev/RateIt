@@ -1,23 +1,14 @@
 package csc472.depaul.edu.rateit;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.TestLooperManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
 public class ProductActivity extends AppCompatActivity {
 

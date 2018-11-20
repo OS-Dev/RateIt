@@ -1,6 +1,7 @@
 package csc472.depaul.edu.rateit;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,19 +24,21 @@ public class ProductLinearLayout extends LinearLayout {
 
     private void inflaterContextAndAddLayoutToLayout(Context context)
     {
-        setOrientation(LinearLayout.VERTICAL);
+        setGravity(Gravity.END);
+        setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
         TextView title = new TextView(context);
         title.setText(_product.getProductName());
-        title.setWidth(100);
-        title.setHeight(500);
+        title.setTextSize(25);
+        title.setWidth(800);
+        title.setPadding(30,20,0,0);
         addView(title);
 
         TextView rating = new TextView(context);
-        rating.setText(_product.getAvgRating());
-        rating.setWidth(100);
-        rating.setHeight(500);
-        addView(title);
+        rating.setText(Integer.toString(_product.getAvgRating()) + " stars");
+        rating.setTextSize(25);
+        rating.setPadding(0,20,0,0);
+        addView(rating);
     }
 }
 

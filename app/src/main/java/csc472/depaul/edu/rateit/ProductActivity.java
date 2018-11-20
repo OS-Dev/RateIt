@@ -39,7 +39,7 @@ public class ProductActivity extends AppCompatActivity {
             //Get Intent from Home of Profile
             Intent intent = getIntent();
             //Create product from parcel
-            product = intent.getParcelableExtra("product");
+            product = intent.getParcelableExtra("NEW_PRODUCT_INTENT");
             //Gather data for display
             String productName = product.getProductName();
             int imgSrc = product.getImgSrc();

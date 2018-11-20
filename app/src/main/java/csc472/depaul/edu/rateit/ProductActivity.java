@@ -24,9 +24,10 @@ public class ProductActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent());
+                startActivity(new Intent(getUserActivity(), ProfileActivity.class));
             }
         });
+
             //Get Intent from Home of Profile
             Intent intent = getIntent();
             //Create product from parcel
@@ -49,5 +50,9 @@ public class ProductActivity extends AppCompatActivity {
             final RatingBar ratingView = findViewById(R.id.ratingBar);
             ratingView.setNumStars(avgRating);
 
+    }
+
+    private ProductActivity getUserActivity() {
+        return this;
     }
 }

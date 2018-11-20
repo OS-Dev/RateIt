@@ -14,11 +14,15 @@ import java.util.List;
 public class RatedFragment extends Fragment {
 
     List<Product> ratedList = new ArrayList<>();
+   // List<Product> ratedList = ProfileActivity.profile.getRated();
 
     private void loadRated() {
         ArrayList<Product> inventory = HomeActivity.getProductArrayList();
         for (int i=0; i<inventory.size(); i++) {
-            if (i%2==0) ratedList.add(inventory.get(i));
+            if (i%2==0) {
+                ratedList.add(inventory.get(i));
+                ProfileActivity.profile.addRated(inventory.get(i));
+            }
         }
     }
 

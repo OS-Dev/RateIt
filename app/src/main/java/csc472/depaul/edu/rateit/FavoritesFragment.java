@@ -14,11 +14,15 @@ import java.util.List;
 public class FavoritesFragment extends Fragment {
 
     List<Product> favoriteList = new ArrayList<>();
+   // List<Product> favoriteList = ProfileActivity.profile.getFavorites();
 
     private void loadRated() {
         ArrayList<Product> inventory = HomeActivity.getProductArrayList();
         for (int i=0; i<inventory.size(); i++) {
-            if (inventory.get(i).getAvgRating() == 5) favoriteList.add(inventory.get(i));
+            if (inventory.get(i).getAvgRating() == 5) {
+                favoriteList.add(inventory.get(i));
+                ProfileActivity.profile.addFavorite(inventory.get(i));
+            }
         }
     }
 

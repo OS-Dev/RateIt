@@ -21,6 +21,7 @@ public class ProfileActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri){}
 
+    static Profile profile = new Profile("John Doe", null);
     private final String LOG_TAG = ProfileActivity.class.getSimpleName();
 
     // Titles of the individual pages (displayed in tabs)

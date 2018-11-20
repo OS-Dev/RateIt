@@ -24,6 +24,9 @@ public class Profile {
         //TODO implementation
     }
 
+    public ArrayList<Product> getFavorites() { return favorites; }
+    public ArrayList<Product> getRated() { return rated; }
+
     public void changeUsername(String name) {
         username = name;
     }
@@ -35,6 +38,8 @@ public class Profile {
     public void removeFavorite(Product product) {
         favorites.remove(product);
     }
+
+    public void addRated(Product product) { rated.add(product); }
 
     public void rate(Product product, int rating) {
         if (rated.contains(product)) {

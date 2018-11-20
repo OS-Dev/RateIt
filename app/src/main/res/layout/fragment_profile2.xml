@@ -109,9 +109,6 @@
                     android:textStyle="bold"
                     android:layout_below="@id/items_favorited" />
 
-
-
-
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>

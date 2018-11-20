@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private ArrayList<Product> productArrayList = new ArrayList<>();
+    private static ArrayList<Product> productArrayList = new ArrayList<>();
     private String NEW_PRODUCT_INTENT = "NEW_PRODUCT_INTENT";
 
     @Override
@@ -66,6 +66,8 @@ public class HomeActivity extends AppCompatActivity {
     {
         return this;
     }
+
+    public static ArrayList<Product> getProductArrayList() { return productArrayList; }
 
     private void requestReadExternalStoragePermission()
     {

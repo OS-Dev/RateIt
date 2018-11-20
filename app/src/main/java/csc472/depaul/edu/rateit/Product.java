@@ -10,7 +10,7 @@ public class Product implements Parcelable {
      */
     //Create variables
     private final String productName;
-    private final int imgSrc;
+    private final String imgSrc;
     private final String productDescription;
     private int timesRated;
     private int totalRating;
@@ -21,7 +21,7 @@ public class Product implements Parcelable {
 
     public void writeToParcel(Parcel out, int flags) {
         out.writeString(productName);
-        out.writeInt(imgSrc);
+        out.writeString(imgSrc);
         out.writeString(productDescription);
         out.writeInt(timesRated);
         out.writeInt(totalRating);
@@ -40,13 +40,13 @@ public class Product implements Parcelable {
 
     private Product(Parcel in) {
         productName = in.readString();
-        imgSrc = in.readInt();
+        imgSrc = in.readString();
         productDescription = in.readString();
         timesRated = in.readInt();
         totalRating = in.readInt();
     }
     //Product Class Constructor
-    public Product(String productName, int imgSrc, String productDescription,
+    public Product(String productName, String imgSrc, String productDescription,
                 int timesRated, int totalRating){
         this.productName = productName;
         this.imgSrc = imgSrc;
@@ -58,7 +58,7 @@ public class Product implements Parcelable {
     public void incTimesRated(){
         timesRated++;
     }
-    public int getImgSrc(){
+    public String getImgSrc(){
         return imgSrc;
     }
     public String getProductName(){

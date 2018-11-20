@@ -2,13 +2,17 @@ package csc472.depaul.edu.rateit;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import java.io.File;
 
 
 public class ProductActivity extends AppCompatActivity{
@@ -37,7 +41,8 @@ public class ProductActivity extends AppCompatActivity{
             productTextView.setText(product.getProductName());
             //Display product image
             ImageView imgView = findViewById(R.id.product_img);
-            imgView.setImageDrawable(getDrawable(product.getImgSrc()));
+            //Finish : Get file path, Create Bitmap w/factory, setImageBitmap
+        
             //Display product description
             TextView productDescView = findViewById(R.id.product_description);
             productDescView.setText(product.getProductDescription());

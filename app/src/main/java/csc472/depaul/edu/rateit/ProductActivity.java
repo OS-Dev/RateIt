@@ -41,7 +41,7 @@ public class ProductActivity extends AppCompatActivity{
         });
         //Add Favorite Button
         Button favButton = findViewById(R.id.favorite_button);
-        profileButton.setOnClickListener(new View.OnClickListener() {
+        favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//
                //profile.addFavorite(product);
